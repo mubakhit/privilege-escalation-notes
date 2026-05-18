@@ -2,7 +2,7 @@
 
 <div align="center">
 
-![GitHub stars](https://img.shields.io/github/stars/mubakhit/privesc-notes)
+![GitHub stars](https://img.shields.io/github/stars/mubakhit/privilege-escalation-notes)
 
 </div>
 
